@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+
 import './Getdata.css';
 
 export const Getdata = () => {
     const [arr, setArr] = useState([]);
     const [sum, setSum] = useState(0);
-/// request to URL
-  /*   const handelRequest = async () => {
+    /// request to URL
+    /*   const handelRequest = async () => {
         try {
             const response = await fetch(
                 'http://autodemolizioneautore.it/SVC/dummyGET'
@@ -20,7 +21,6 @@ export const Getdata = () => {
         }
     }; */
 
-    
     const handelRequest = () => {
         const array = [];
         for (let i = 0; i < 50; i++) {
@@ -28,7 +28,7 @@ export const Getdata = () => {
         }
         setArr((prev) => (prev = array));
     };
-    
+
     useEffect(() => {
         setSum((prev) => (prev = arr.reduce((acc, cur) => acc + cur, 0)));
     }, [arr]);
