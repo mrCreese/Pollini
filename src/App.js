@@ -1,10 +1,12 @@
 import './App.css';
-import { Form } from './components/form';
+import { Form } from './components/form/Form';
+import { Getdata } from './components/getData/Getdata';
 
 function App() {
     return (
-        <div className='App'>
+        <div className='container'>
             <Form />
+            <Getdata />
         </div>
     );
 }

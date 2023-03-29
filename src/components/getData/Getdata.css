@@ -1,0 +1,19 @@
+.btn_get {
+    margin: 20px;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+}
+.request {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 25px;
+    display: flex;
+}
+.total {
+    font-weight: 700;
+}
