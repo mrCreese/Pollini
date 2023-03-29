@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.my_form {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: aquamarine;
+    width: 350px;
+    height: 350px;
+    border: 5px solid blue;
+}
+.my_input {
+    display: flex;
+    align-items: center;
+}
+.btn {
+    margin: 20px;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+}
+.total {
+    font-weight: 700;
+}
