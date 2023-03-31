@@ -1,37 +1,33 @@
 import React, { useState } from 'react';
 
-import './form.css';
-
 export const Form = () => {
-    const [id, setId] = useState('');
-    const [message, setMessage] = useState('');
+    const [inputs, setInputs] = useState({});
 
-    const handleChangeId = (event) => {
-        const num = event.target.value;
-
-        setId((prev) => (prev = num));
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs((values) => ({ ...values, [name]: value }));
+        console.log(inputs);
     };
 
-    const handleChangeMessage = (event) => {
-        const string = event.target.value;
-
-        setMessage((prev) => (prev = string));
-    };
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        let obj = {
-            id: Number(id),
-            code: message,
-        };
-        if (id && message) {
-            fetch('https://autodemolizioneautore.it/SVC/dummyPOST', {
+
+        if (inputs.id && inputs.message) {
+            await fetch('https://autodemolizioneautore.it/SVC/dummyPOST', {
                 method: 'POST',
                 mode: 'cors',
-                body: JSON.stringify(obj),
-            });
-            setMessage('');
-            setId('');
+                body: JSON.stringify({
+                    message: inputs.message,
+                    id: Math.trunc(Number(inputs.id)),
+                }),
+            })
+                .then((response) => response.json())
+                .catch((err) => {
+                    alert(err.message);
+                });
+
+            setInputs((prev) => (prev = {}));
             alert('Post submit');
         } else {
             alert('Incorect id or message');
@@ -39,30 +35,26 @@ export const Form = () => {
     };
 
     return (
-        <div>
-            <form className='my_form' onSubmit={handleSubmit}>
-                <h3> Enter your id:</h3>
-
-                <input
-                    type='number'
-                    name='id'
-                    value={id}
-                    onChange={handleChangeId}
-                />
-
-                <h3> Enter your message:</h3>
-
+        <form className='my_form' onSubmit={handleSubmit}>
+            <label>
+                Enter your name:
                 <input
                     type='text'
                     name='message'
-                    value={message}
-                    onChange={handleChangeMessage}
+                    value={inputs.message || ''}
+                    onChange={handleChange}
                 />
-
-                <button className='btn' type='submint'>
-                    click
-                </button>
-            </form>
-        </div>
+            </label>
+            <label>
+                Enter your age:
+                <input
+                    type='number'
+                    name='id'
+                    value={inputs.id || ''}
+                    onChange={handleChange}
+                />
+            </label>
+            <input className='btn' type='submit' value='Submit' />
+        </form>
     );
 };

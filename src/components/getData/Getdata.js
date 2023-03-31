@@ -35,14 +35,19 @@ export const Getdata = () => {
 
     return (
         <div className='request'>
-            <button className='btn_get' onClick={() => handelRequest()}>
+            <button className='btn' onClick={() => handelRequest()}>
                 Get numbers
             </button>
-            <div>
-                {arr.map((num, id) => (
-                    <span>{num} </span>
-                ))}
-            </div>
+            <h2>Numbers</h2>
+            <table>
+                <tbody>
+                    <tr className='content'>
+                        {arr.map((num, id) => (
+                            <td key={id}>{num}</td>
+                        ))}
+                    </tr>
+                </tbody>
+            </table>
             <div className='total'>total sum : {sum}</div>
         </div>
     );
